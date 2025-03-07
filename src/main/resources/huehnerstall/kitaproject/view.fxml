@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="huehnerstall.kitaproject.Controller">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huehnerstall.kitaproject.controller.MitarbeiterController">
+   <top>
+      <TabPane prefHeight="884.0" prefWidth="1308.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Dienstplan">
+            <content>
+              <AnchorPane />
+            </content>
+          </Tab>
+          <Tab text="Anwesenheit/Doku">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Mitarbeiter">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="439.0" prefWidth="1308.0">
+                     <children>
+                        <TableView fx:id="mitarbeiterTable" prefHeight="830.0" prefWidth="1308.0">
+                          <columns>
+                            <TableColumn text="ID" prefWidth="50" cellValueFactory="{new PropertyValueFactory('mitarbeiterId')}"/>
+                            <TableColumn text="Rolle ID" prefWidth="70" cellValueFactory="{new PropertyValueFactory('rolleId')}"/>
+                            <TableColumn text="Vorname" prefWidth="100" cellValueFactory="{new PropertyValueFactory('vorname')}"/>
+                            <TableColumn text="Nachname" prefWidth="100" cellValueFactory="{new PropertyValueFactory('nachname')}"/>
+                            <TableColumn text="Telefon" prefWidth="100" cellValueFactory="{new PropertyValueFactory('telefon')}"/>
+                            <TableColumn text="Email" prefWidth="150" cellValueFactory="{new PropertyValueFactory('email')}"/>
+                            <TableColumn text="Strasse" prefWidth="100" cellValueFactory="{new PropertyValueFactory('strasse')}"/>
+                            <TableColumn text="Hausnr." prefWidth="70" cellValueFactory="{new PropertyValueFactory('hausnummer')}"/>
+                            <TableColumn text="PLZ" prefWidth="70" cellValueFactory="{new PropertyValueFactory('plz')}"/>
+                            <TableColumn text="Ort" prefWidth="100" cellValueFactory="{new PropertyValueFactory('ort')}"/>
+                            <TableColumn text="Berufsbezeichnung" prefWidth="150" cellValueFactory="{new PropertyValueFactory('mitarbeiterRolle')}"/>
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Kinder">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="(Erziehungsberechtigte)">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Zahlungen">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Standorte">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </top>
+</BorderPane>
