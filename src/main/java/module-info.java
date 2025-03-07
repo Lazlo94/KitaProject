@@ -5,6 +5,7 @@ module huehnerstall.kitaproject {
 
     opens huehnerstall.kitaproject to javafx.fxml;
     opens huehnerstall.kitaproject.controller to javafx.fxml;
+    opens huehnerstall.kitaproject.model to javafx.base;
 
     exports huehnerstall.kitaproject;
     exports huehnerstall.kitaproject.controller;

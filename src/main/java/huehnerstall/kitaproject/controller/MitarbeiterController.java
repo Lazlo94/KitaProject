@@ -5,7 +5,7 @@ import huehnerstall.kitaproject.model.Mitarbeiter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class MitarbeiterController {
 
     @FXML
-    private ListView<Mitarbeiter> mitarbeiterView;
+    private TableView<Mitarbeiter> mitarbeiterTable;
 
     private ObservableList<Mitarbeiter> mitarbeiterList = FXCollections.observableArrayList();
 
@@ -60,6 +60,6 @@ public class MitarbeiterController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        mitarbeiterView.setItems(mitarbeiterList);
+        mitarbeiterTable.setItems(mitarbeiterList);
     }
 }
