@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="huehnerstall.kitaproject.controller.MitarbeiterController">
+    <children>
+        <TableView fx:id="mitarbeiterTable" prefHeight="830.0" prefWidth="1308.0">
+            <columns>
+                <TableColumn text="ID" prefWidth="50">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="mitarbeiterId"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Rolle ID" prefWidth="70">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="rolleId"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Vorname" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="vorname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Nachname" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nachname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Telefon" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="telefon"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Email" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Strasse" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="strasse"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Hausnr." prefWidth="70">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="hausnummer"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="PLZ" prefWidth="70">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="plz"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Ort" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="ort"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Berufsbezeichnung" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="mitarbeiterRolle"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
