@@ -3,6 +3,7 @@ package huehnerstall.kitaproject.controller;
 import huehnerstall.kitaproject.JDBC;
 import huehnerstall.kitaproject.model.Dokumentation;
 import huehnerstall.kitaproject.model.Kind;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -26,6 +27,11 @@ public class DokumentationEditController {
 
     private Kind kind;  // Das Kind, dem diese Dokumentation zugeordnet ist
     private Dokumentation documentation; // Falls bereits ein Eintrag existiert (Bearbeitung), sonst null
+
+    @FXML
+    public void initialize() {
+        anwesenheitCombo.setItems(FXCollections.observableArrayList("Anwesend", "Entschuldigt", "Unentschuldigt"));
+    }
 
     /**
      * Wird aufgerufen, wenn ein neuer Dokumentationseintrag hinzugefügt wird.

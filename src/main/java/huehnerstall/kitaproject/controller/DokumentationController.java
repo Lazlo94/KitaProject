@@ -8,6 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
@@ -96,59 +100,10 @@ public class DokumentationController {
         dokumentationTable.setItems(documentationList);
     }
 
-/*    @FXML
-    private void handleAdd(ActionEvent event) {
-        try {
-            // Passe den Pfad an den tatsächlichen Speicherort deiner FXML-Datei an
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dokumentationEdit.fxml"));
-            Parent root = loader.load();
-            // Angenommen, DokumentationEditController übernimmt das Hinzufügen/Bearbeiten
-            DokumentationEditController editController = loader.getController();
-            // Übergib das Kind, damit der neue Eintrag diesem Kind zugeordnet wird
-            editController.setKind(kind);
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Neue Dokumentation hinzufügen");
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-            loadDokumentation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @FXML
     private void handleAdd(ActionEvent event) {
         openDokumentationEditPopup(null);
     }
-
-/*    @FXML
-    private void handleEdit(ActionEvent event) {
-        Dokumentation selectedDoc = dokumentationTable.getSelectionModel().getSelectedItem();
-        if (selectedDoc == null) {
-            // Optionale Fehlermeldung, wenn kein Eintrag ausgewählt wurde
-            System.out.println("Kein Dokumentationseintrag ausgewählt!");
-            return;
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dokumentationEdit.fxml"));
-            Parent root = loader.load();
-            DokumentationEditController editController = loader.getController();
-            // Übergibt den ausgewählten Dokumentationseintrag zum Bearbeiten
-            editController.setDocumentation(selectedDoc);
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Dokumentation bearbeiten");
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-            // Nach dem Schließen des Popups die Liste neu laden
-            loadDokumentation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @FXML
     private void handleEdit(ActionEvent event) {
@@ -158,6 +113,35 @@ public class DokumentationController {
             return;
         }
         openDokumentationEditPopup(selectedDoc);
+    }
+
+    @FXML
+    private void handleDelete(ActionEvent event) {
+        // Hole den ausgewählten Dokumentationseintrag
+        Dokumentation selectedDoc = dokumentationTable.getSelectionModel().getSelectedItem();
+        if (selectedDoc == null) {
+            System.out.println("Bitte wählen Sie einen Eintrag zum Löschen aus!");
+            return;
+        }
+
+        // Bestätigungsdialog anzeigen
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Dokumentation löschen");
+        alert.setHeaderText("Möchten Sie den ausgewählten Eintrag wirklich löschen?");
+        alert.setContentText("Diese Aktion kann nicht rückgängig gemacht werden.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            String sql = "DELETE FROM dokumentation WHERE doku_id = ?";
+            try (Connection conn = JDBC.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, selectedDoc.getDokuId());
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            // Tabelle neu laden, um die Löschung zu reflektieren
+            loadDokumentation();
+        }
     }
 
     private void openDokumentationEditPopup(Dokumentation doc) {

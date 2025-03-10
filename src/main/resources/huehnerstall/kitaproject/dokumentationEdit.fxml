@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -8,25 +7,15 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.GridPane?>
 
-<?import java.lang.String?>
 <GridPane xmlns="http://javafx.com/javafx/23.0.1"
           xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="huehnerstall.kitaproject.controller.DokumentationEditController"
-          hgap="10" vgap="10" padding="20">
+          hgap="10" vgap="10">
     <Label text="Datum:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <DatePicker fx:id="dokuDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
     <Label text="Anwesenheit:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-
-    <ComboBox fx:id="anwesenheitCombo" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Anwesend"/>
-                <String fx:value="Entschuldigt"/>
-                <String fx:value="Unentschuldigt"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
+    <ComboBox fx:id="anwesenheitCombo" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <Label text="Bemerkung:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <TextArea fx:id="bemerkungField" prefRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
