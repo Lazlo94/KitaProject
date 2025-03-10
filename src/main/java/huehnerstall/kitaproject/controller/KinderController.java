@@ -5,13 +5,25 @@ import huehnerstall.kitaproject.model.Kind;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 
 public class KinderController {
 
@@ -23,6 +35,7 @@ public class KinderController {
     @FXML
     public void initialize() {
         loadKinder();
+        addDokumentationButtonColumn();
     }
 
     private void loadKinder() {
@@ -55,4 +68,53 @@ public class KinderController {
         }
         kinderTable.setItems(kinderList);
     }
+
+    private void addDokumentationButtonColumn() {
+        TableColumn<Kind, Void> actionCol = new TableColumn<>("Dokumentation");
+        Callback<TableColumn<Kind, Void>, TableCell<Kind, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Kind, Void> call(final TableColumn<Kind, Void> param) {
+                return new TableCell<>() {
+                    private final Button btn = new Button("Dokumentation");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            Kind kind = getTableView().getItems().get(getIndex());
+                            openDokumentationPopup(kind);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+            }
+        };
+        actionCol.setCellFactory(cellFactory);
+        kinderTable.getColumns().add(actionCol);
+    }
+
+    private void openDokumentationPopup(Kind kind) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/huehnerstall/kitaproject/dokumentation.fxml"));
+            Parent root = loader.load();
+            DokumentationController docController = loader.getController();
+            docController.setKind(kind);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // Blockiert das Hauptfenster, bis das Popup geschlossen wird
+            stage.setTitle("Dokumentation für " + kind.getVorname() + " " + kind.getNachname());
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
