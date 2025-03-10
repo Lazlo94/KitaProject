@@ -4,10 +4,12 @@ import java.time.LocalDate;
 
 public class Kind {
     private int kindId;
-    private Integer gruppeId; // kann null sein, wenn kein FK gesetzt ist
+    private Integer gruppeId;
     private String vorname;
     private String nachname;
     private LocalDate geburtstag;
+    private String gruppenName;
+    private String standort;
 
     public Kind() { }
 
@@ -59,8 +61,24 @@ public class Kind {
         this.geburtstag = geburtstag;
     }
 
+    public String getGruppenName() {
+        return gruppenName;
+    }
+    public void setGruppenName(String gruppenName) {
+        this.gruppenName = gruppenName;
+    }
+
+    public String getStandort() {
+        return standort;
+    }
+
+    public void setStandort(String standort) {
+        this.standort = standort;
+    }
+
     @Override
     public String toString() {
-        return vorname + " " + nachname;
+        return vorname + " " + nachname + " (" + geburtstag + ") - " + gruppenName + " - " + standort;
     }
+
 }

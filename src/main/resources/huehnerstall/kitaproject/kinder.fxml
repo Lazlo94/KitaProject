@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="huehnerstall.kitaproject.controller.KinderController">
+    <children>
+        <TableView fx:id="kinderTable" prefHeight="830.0" prefWidth="1308.0">
+            <columns>
+                <TableColumn text="Vorname" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="vorname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Nachname" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nachname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Geburtstag" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="geburtstag"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Gruppe" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="gruppenName"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Standort" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="standort"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
