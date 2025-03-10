@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="huehnerstall.kitaproject.controller.KinderController">
-    <children>
-        <TableView fx:id="kinderTable" prefHeight="830.0" prefWidth="1308.0">
-            <columns>
-                <TableColumn text="Vorname" prefWidth="150">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="vorname"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="Nachname" prefWidth="150">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="nachname"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="Geburtstag" prefWidth="150">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="geburtstag"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="Gruppe" prefWidth="150">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="gruppenName"/>
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="Standort" prefWidth="150">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="standort"/>
-                    </cellValueFactory>
-                </TableColumn>
-            </columns>
-        </TableView>
-    </children>
-</AnchorPane>
+<VBox alignment="CENTER" spacing="10" style="-fx-padding: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huehnerstall.kitaproject.controller.KinderController">
+    <TableView fx:id="kinderTable" prefHeight="600" prefWidth="800">
+        <columns>
+            <TableColumn prefWidth="150" text="Vorname">
+                <cellValueFactory>
+                    <PropertyValueFactory property="vorname" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150" text="Nachname">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nachname" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150" text="Geburtstag">
+                <cellValueFactory>
+                    <PropertyValueFactory property="geburtstag" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150" text="Gruppe">
+                <cellValueFactory>
+                    <PropertyValueFactory property="gruppenName" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150" text="Standort">
+                <cellValueFactory>
+                    <PropertyValueFactory property="standort" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button onAction="#handleAdd" text="Hinzufügen" />
+        <Button onAction="#handleEdit" text="Bearbeiten" />
+        <Button onAction="#handleDelete" text="Löschen" />
+    </HBox>
+</VBox>

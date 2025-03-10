@@ -2,13 +2,20 @@ package huehnerstall.kitaproject.controller;
 
 import huehnerstall.kitaproject.JDBC;
 import huehnerstall.kitaproject.model.Kind;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,14 +23,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Optional;
 
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 
 public class KinderController {
 
@@ -39,6 +41,7 @@ public class KinderController {
     }
 
     private void loadKinder() {
+        kinderList.clear();
         // Erwartet, dass vw_kind_info die Spalten kind_id, vorname, nachname, geburtstag, gruppenname und standort liefert.
         String sql = "SELECT kind_id, vorname, nachname, geburtstag, gruppenname, standort FROM vw_kind_info";
         try (Connection conn = JDBC.getConnection();
@@ -67,6 +70,86 @@ public class KinderController {
             e.printStackTrace();
         }
         kinderTable.setItems(kinderList);
+    }
+
+    /**
+     * Öffnet das Popup zum Hinzufügen eines neuen Kindes.
+     */
+    @FXML
+    private void handleAdd(ActionEvent event) {
+        openKinderEditPopup(null);
+    }
+
+    /**
+     * Öffnet das Popup zum Bearbeiten des ausgewählten Kind-Eintrags.
+     */
+    @FXML
+    private void handleEdit(ActionEvent event) {
+        Kind selectedKind = kinderTable.getSelectionModel().getSelectedItem();
+        if (selectedKind == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kein Kind ausgewählt");
+            alert.setHeaderText(null);
+            alert.setContentText("Bitte wählen Sie einen Kind-Eintrag zum Bearbeiten aus.");
+            alert.showAndWait();
+            return;
+        }
+        openKinderEditPopup(selectedKind);
+    }
+
+    /**
+     * Löscht den ausgewählten Kind-Eintrag nach Bestätigung.
+     */
+    @FXML
+    private void handleDelete(ActionEvent event) {
+        Kind selectedKind = kinderTable.getSelectionModel().getSelectedItem();
+        if (selectedKind == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kein Kind ausgewählt");
+            alert.setHeaderText(null);
+            alert.setContentText("Bitte wählen Sie einen Kind-Eintrag zum Löschen aus.");
+            alert.showAndWait();
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Kind löschen");
+        confirm.setHeaderText("Möchten Sie den ausgewählten Eintrag wirklich löschen?");
+        Optional<ButtonType> result = confirm.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            String sql = "DELETE FROM kind WHERE kind_id = ?";
+            try (Connection conn = JDBC.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, selectedKind.getKindId());
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            loadKinder();
+        }
+    }
+
+    private void openKinderEditPopup(Kind kind) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/huehnerstall/kitaproject/kinderEdit.fxml"));
+            Parent root = loader.load();
+            KinderEditController editController = loader.getController();
+            if (kind == null) {
+                // Für Hinzufügen: setze einen leeren Eintrag bzw. initialisiere Standardwerte.
+                editController.setKindForAdd();
+            } else {
+                // Für Bearbeiten: übergebe das ausgewählte Kind.
+                editController.setKindForEdit(kind);
+            }
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle(kind == null ? "Kind hinzufügen" : "Kind bearbeiten");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            // Nach dem Schließen des Popups die Tabelle aktualisieren
+            loadKinder();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addDokumentationButtonColumn() {
