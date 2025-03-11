@@ -1,5 +1,7 @@
 package huehnerstall.kitaproject.model;
 
+import java.math.BigDecimal;
+
 public class Mitarbeiter {
     private int mitarbeiterId;
     private int rolleId;
@@ -11,12 +13,14 @@ public class Mitarbeiter {
     private String hausnummer;
     private String plz;
     private String ort;
+    private BigDecimal gehalt; // Neues Feld für Gehalt
     private String mitarbeiterRolle;
 
     public Mitarbeiter() { }
 
     public Mitarbeiter(int mitarbeiterId, int rolleId, String vorname, String nachname, String telefon,
-                       String email, String strasse, String hausnummer, String plz, String ort, String mitarbeiterRolle) {
+                       String email, String strasse, String hausnummer, String plz, String ort, BigDecimal gehalt,
+                       String mitarbeiterRolle) {
         this.mitarbeiterId = mitarbeiterId;
         this.rolleId = rolleId;
         this.vorname = vorname;
@@ -27,6 +31,7 @@ public class Mitarbeiter {
         this.hausnummer = hausnummer;
         this.plz = plz;
         this.ort = ort;
+        this.gehalt = gehalt;
         this.mitarbeiterRolle = mitarbeiterRolle;
     }
 
@@ -110,6 +115,14 @@ public class Mitarbeiter {
         this.ort = ort;
     }
 
+    public BigDecimal getGehalt() {
+        return gehalt;
+    }
+
+    public void setGehalt(BigDecimal gehalt) {
+        this.gehalt = gehalt;
+    }
+
     public String getMitarbeiterRolle() {
         return mitarbeiterRolle;
     }
@@ -125,6 +138,7 @@ public class Mitarbeiter {
                 + "Telefon: " + telefon + "\n"
                 + "Email: " + email + "\n"
                 + "Adresse: " + strasse + " " + hausnummer + ", " + plz + " " + ort + "\n"
+                + "Gehalt: " + gehalt + "\n"
                 + "Berufsbezeichnung: " + mitarbeiterRolle;
     }
 }

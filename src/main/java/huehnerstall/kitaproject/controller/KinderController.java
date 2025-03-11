@@ -133,19 +133,15 @@ public class KinderController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/huehnerstall/kitaproject/kinderEdit.fxml"));
             Parent root = loader.load();
             KinderEditController editController = loader.getController();
-            if (kind == null) {
-                // Für Hinzufügen: setze einen leeren Eintrag bzw. initialisiere Standardwerte.
-                editController.setKindForAdd();
-            } else {
-                // Für Bearbeiten: übergebe das ausgewählte Kind.
-                editController.setKindForEdit(kind);
-            }
+
+            editController.setKind(kind);
+
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle(kind == null ? "Kind hinzufügen" : "Kind bearbeiten");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 300, 250));
+            stage.setResizable(false);
             stage.showAndWait();
-            // Nach dem Schließen des Popups die Tabelle aktualisieren
             loadKinder();
         } catch (IOException e) {
             e.printStackTrace();

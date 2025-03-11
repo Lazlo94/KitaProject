@@ -21,6 +21,13 @@ public class Kind {
         this.geburtstag = geburtstag;
     }
 
+    public Kind(Integer gruppeId, String vorname, String nachname, LocalDate geburtstag) {
+        this.gruppeId = gruppeId;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.geburtstag = geburtstag;
+    }
+
     public int getKindId() {
         return kindId;
     }

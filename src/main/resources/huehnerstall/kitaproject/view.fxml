@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <center>
-    <TabPane prefHeight="884.0" prefWidth="1308.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+    <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
       <tabs>
         <Tab text="Dienstplan">
           <content>
@@ -21,12 +21,12 @@
         </Tab>
         <Tab text="Mitarbeiter">
           <content>
-            <fx:include source="mitarbeiter.fxml"/>
+            <fx:include source="mitarbeiter.fxml" />
           </content>
         </Tab>
         <Tab text="Kinder">
           <content>
-            <fx:include source="kinder.fxml"/>
+            <fx:include source="kinder.fxml" />
           </content>
         </Tab>
         <Tab text="(Erziehungsberechtigte)">
@@ -41,7 +41,12 @@
         </Tab>
         <Tab text="Standorte">
           <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <fx:include source="standort.fxml" />
+          </content>
+        </Tab>
+        <Tab text="Gruppen">
+          <content>
+            <fx:include source="gruppe.fxml" />
           </content>
         </Tab>
       </tabs>

@@ -6,10 +6,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
 
+<?import javafx.scene.control.ComboBox?>
 <GridPane xmlns="http://javafx.com/javafx/23.0.1"
           xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="huehnerstall.kitaproject.controller.KinderEditController"
-          hgap="10" vgap="10" padding="20.0">
+          hgap="10" vgap="10" style="-fx-padding: 5;" alignment="CENTER">
     <Label text="Vorname:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <TextField fx:id="vornameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
@@ -19,12 +20,12 @@
     <Label text="Geburtstag:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <DatePicker fx:id="geburtstagPicker" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-    <Label text="Gruppe:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <TextField fx:id="gruppenNameField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Label text="Standort:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <ComboBox fx:id="standortComboBox" onAction="#handleStandortChange" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-    <Label text="Standort:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-    <TextField fx:id="standortField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    <Label text="Gruppe:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <ComboBox fx:id="gruppenComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Button text="Speichern" onAction="#handleSave" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <Button text="Speichern" onAction="#handleSave" fx:id="saveButton" GridPane.columnIndex="0" GridPane.rowIndex="5" disable="true"/>
     <Button text="Abbrechen" onAction="#handleCancel" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 </GridPane>

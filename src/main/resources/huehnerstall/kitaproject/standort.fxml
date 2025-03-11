@@ -5,38 +5,42 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<BorderPane style="-fx-padding: 5;" xmlns="http://javafx.com/javafx/23.0.1"
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="huehnerstall.kitaproject.controller.KinderController">
-    <!-- Die TableView kommt in den Center-Bereich -->
+            fx:controller="huehnerstall.kitaproject.controller.StandortController"
+            style="-fx-padding: 5;">
     <center>
-        <TableView fx:id="kinderTable" prefWidth="800" BorderPane.alignment="CENTER">
+        <TableView fx:id="standortTable" prefWidth="800" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn prefWidth="150" text="Vorname">
+                <TableColumn text="ID" prefWidth="50">
                     <cellValueFactory>
-                        <PropertyValueFactory property="vorname"/>
+                        <PropertyValueFactory property="standortId"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="150" text="Nachname">
+                <TableColumn text="Standort Name" prefWidth="150">
                     <cellValueFactory>
-                        <PropertyValueFactory property="nachname"/>
+                        <PropertyValueFactory property="standortName"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="150" text="Geburtstag">
+                <TableColumn text="Strasse" prefWidth="150">
                     <cellValueFactory>
-                        <PropertyValueFactory property="geburtstag"/>
+                        <PropertyValueFactory property="strasse"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="150" text="Gruppe">
+                <TableColumn text="Hausnummer" prefWidth="70">
                     <cellValueFactory>
-                        <PropertyValueFactory property="gruppenName"/>
+                        <PropertyValueFactory property="hausnummer"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="150" text="Standort">
+                <TableColumn text="PLZ" prefWidth="70">
                     <cellValueFactory>
-                        <PropertyValueFactory property="standort"/>
+                        <PropertyValueFactory property="plz"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Ort" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="ort"/>
                     </cellValueFactory>
                 </TableColumn>
             </columns>

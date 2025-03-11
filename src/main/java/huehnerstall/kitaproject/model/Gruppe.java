@@ -4,13 +4,15 @@ public class Gruppe {
     private int gruppeId;
     private String gruppeName;
     private int standortId;
+    private String standortName; // Für die Anzeige
 
     public Gruppe() { }
 
-    public Gruppe(int gruppeId, String gruppeName, int standortId) {
+    public Gruppe(int gruppeId, String gruppeName, int standortId, String standortName) {
         this.gruppeId = gruppeId;
         this.gruppeName = gruppeName;
         this.standortId = standortId;
+        this.standortName = standortName;
     }
 
     public int getGruppeId() {
@@ -37,8 +39,16 @@ public class Gruppe {
         this.standortId = standortId;
     }
 
+    public String getStandortName() {
+        return standortName;
+    }
+
+    public void setStandortName(String standortName) {
+        this.standortName = standortName;
+    }
+
     @Override
     public String toString() {
-        return gruppeName;
+        return gruppeName + " (" + standortName + ")";
     }
 }
