@@ -42,6 +42,15 @@
     <Label text="Rolle:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
     <ComboBox fx:id="rolleComboBox" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
 
-    <Button text="Speichern" onAction="#handleSave" fx:id="saveButton" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-    <Button text="Abbrechen" onAction="#handleCancel" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+    <Label text="Startzeit:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+    <ComboBox fx:id="startComboBox" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+
+    <Label text="Arbeitszeit:" GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+    <ComboBox fx:id="zeitComboBox" GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+
+    <Label text="Gruppe:" GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+    <ComboBox fx:id="gruppeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+
+    <Button text="Speichern" onAction="#handleSave" fx:id="saveButton" GridPane.columnIndex="0" GridPane.rowIndex="13"/>
+    <Button text="Abbrechen" onAction="#handleCancel" GridPane.columnIndex="1" GridPane.rowIndex="13"/>
 </GridPane>

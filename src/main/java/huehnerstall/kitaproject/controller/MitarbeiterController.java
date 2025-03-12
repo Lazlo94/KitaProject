@@ -34,13 +34,19 @@ public class MitarbeiterController {
      */
     private void loadMitarbeiter() {
         mitarbeiterList.clear();
-        String sql = "SELECT mitarbeiter_id, rolle_id, vorname, nachname, telefon, email, strasse, hausnummer, plz, ort, gehalt, mitarbeiter_rolle FROM vw_mitarbeiter";
+        // String sql = "SELECT mitarbeiter_id, rolle_id, vorname, nachname, telefon, email, strasse, hausnummer, plz, ort, gehalt, mitarbeiter_rolle FROM vw_mitarbeiter";
+        String sql = "SELECT m.mitarbeiter_id, m.rolle_id, m.vorname, m.nachname, m.telefon, m.email, " +
+                "m.strasse, m.hausnummer, m.plz, m.ort, m.gehalt, m.startzeit, m.arbeitszeit, m.gruppe, " +
+                "r.beruf AS mitarbeiter_rolle " +
+                "FROM mitarbeiter m " +
+                "JOIN rolle r ON m.rolle_id = r.rolle_id";
+
         try (Connection conn = JDBC.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                int id = rs.getInt("mitarbeiter_id");
+                /*int id = rs.getInt("mitarbeiter_id");
                 int rolleId = rs.getInt("rolle_id");
                 String vorname = rs.getString("vorname");
                 String nachname = rs.getString("nachname");
@@ -54,6 +60,30 @@ public class MitarbeiterController {
                 String beruf = rs.getString("mitarbeiter_rolle");
 
                 Mitarbeiter mitarbeiter = new Mitarbeiter(id, rolleId, vorname, nachname, telefon, email, strasse, hausnummer, plz, ort, gehalt, beruf);
+                mitarbeiterList.add(mitarbeiter);*/
+
+                int id = rs.getInt("mitarbeiter_id");
+                int rolleId = rs.getInt("rolle_id");
+                String vorname = rs.getString("vorname");
+                String nachname = rs.getString("nachname");
+                String telefon = rs.getString("telefon");
+                String email = rs.getString("email");
+                String strasse = rs.getString("strasse");
+                String hausnummer = rs.getString("hausnummer");
+                String plz = rs.getString("plz");
+                String ort = rs.getString("ort");
+                BigDecimal gehalt = rs.getBigDecimal("gehalt");
+                String beruf = rs.getString("mitarbeiter_rolle");
+                Time sqlStartzeit = rs.getTime("startzeit");
+                Time sqlArbeitszeit = rs.getTime("arbeitszeit");
+                int gruppe = rs.getInt("gruppe"); // Falls die Spalte NULL ist, gibt getInt() 0 zurück
+
+                // Konvertiere TIME in LocalTime (wenn nicht null)
+                java.time.LocalTime startzeit = (sqlStartzeit != null) ? sqlStartzeit.toLocalTime() : null;
+                java.time.LocalTime arbeitszeit = (sqlArbeitszeit != null) ? sqlArbeitszeit.toLocalTime() : null;
+
+                // Nutzt einen Konstruktor, der alle Felder akzeptiert
+                Mitarbeiter mitarbeiter = new Mitarbeiter(id, rolleId, vorname, nachname, telefon, email, strasse, hausnummer, plz, ort, gehalt, beruf, startzeit, arbeitszeit, gruppe);
                 mitarbeiterList.add(mitarbeiter);
             }
         } catch (SQLException e) {
@@ -132,7 +162,7 @@ public class MitarbeiterController {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle(mitarbeiter == null ? "Mitarbeiter hinzufügen" : "Mitarbeiter bearbeiten");
-            stage.setScene(new Scene(root, 500, 400)); // Größe anpassen
+            stage.setScene(new Scene(root, 400, 600)); // Größe anpassen
             stage.setResizable(false);
             stage.showAndWait();
             // Nach dem Schließen des Popups aktualisieren wir die Tabelle

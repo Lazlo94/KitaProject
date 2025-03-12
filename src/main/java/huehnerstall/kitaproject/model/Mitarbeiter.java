@@ -1,6 +1,7 @@
 package huehnerstall.kitaproject.model;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 public class Mitarbeiter {
     private int mitarbeiterId;
@@ -15,8 +16,31 @@ public class Mitarbeiter {
     private String ort;
     private BigDecimal gehalt; // Neues Feld für Gehalt
     private String mitarbeiterRolle;
+    private LocalTime startzeit;
+    private LocalTime arbeitszeit;
+    private int gruppe;
 
     public Mitarbeiter() { }
+
+    public Mitarbeiter(int mitarbeiterId, int rolleId, String vorname, String nachname, String telefon,
+                       String email, String strasse, String hausnummer, String plz, String ort, BigDecimal gehalt,
+                       String mitarbeiterRolle, LocalTime startzeit, LocalTime arbeitszeit, int gruppe) {
+        this.mitarbeiterId = mitarbeiterId;
+        this.rolleId = rolleId;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.telefon = telefon;
+        this.email = email;
+        this.strasse = strasse;
+        this.hausnummer = hausnummer;
+        this.plz = plz;
+        this.ort = ort;
+        this.gehalt = gehalt;
+        this.mitarbeiterRolle = mitarbeiterRolle;
+        this.startzeit = startzeit;
+        this.arbeitszeit = arbeitszeit;
+        this.gruppe = gruppe;
+    }
 
     public Mitarbeiter(int mitarbeiterId, int rolleId, String vorname, String nachname, String telefon,
                        String email, String strasse, String hausnummer, String plz, String ort, BigDecimal gehalt,
@@ -33,6 +57,9 @@ public class Mitarbeiter {
         this.ort = ort;
         this.gehalt = gehalt;
         this.mitarbeiterRolle = mitarbeiterRolle;
+        this.startzeit = startzeit;
+        this.arbeitszeit = arbeitszeit;
+        this.gruppe = gruppe;
     }
 
     public int getMitarbeiterId() {
@@ -131,6 +158,30 @@ public class Mitarbeiter {
         this.mitarbeiterRolle = mitarbeiterRolle;
     }
 
+    public LocalTime getStartzeit() {
+        return startzeit;
+    }
+
+    public void setStartzeit(LocalTime startzeit) {
+        this.startzeit = startzeit;
+    }
+
+    public LocalTime getArbeitszeit() {
+        return arbeitszeit;
+    }
+
+    public void setArbeitszeit(LocalTime arbeitszeit) {
+        this.arbeitszeit = arbeitszeit;
+    }
+
+    public int getGruppe() {
+        return gruppe;
+    }
+
+    public void setGruppe(int gruppe) {
+        this.gruppe = gruppe;
+    }
+
     @Override
     public String toString() {
         return "ID: " + mitarbeiterId + "\n"
@@ -139,6 +190,8 @@ public class Mitarbeiter {
                 + "Email: " + email + "\n"
                 + "Adresse: " + strasse + " " + hausnummer + ", " + plz + " " + ort + "\n"
                 + "Gehalt: " + gehalt + "\n"
-                + "Berufsbezeichnung: " + mitarbeiterRolle;
-    }
-}
+                + "Berufsbezeichnung: " + mitarbeiterRolle + "\n"
+                + "Startzeit: " + (startzeit != null ? startzeit.toString() : "") + "\n"
+                + "Arbeitszeit: " + (arbeitszeit != null ? arbeitszeit.toString() : "") + "\n"
+                + "Bevorzugte Gruppe: " + gruppe;
+    }}
