@@ -11,12 +11,7 @@
       <tabs>
         <Tab text="Dienstplan">
           <content>
-            <AnchorPane />
-          </content>
-        </Tab>
-        <Tab text="Anwesenheit/Doku">
-          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <fx:include source="dienstplan.fxml" />
           </content>
         </Tab>
         <Tab text="Mitarbeiter">

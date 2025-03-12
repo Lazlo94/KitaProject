@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="huehnerstall.kitaproject.controller.DienstplanController"
+            style="-fx-padding: 10;">
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <children>
+                <Button text="Vorherige Woche" onAction="#handlePrevWeek" fx:id="prevWeekButton"/>
+                <Button text="Nächste Woche" onAction="#handleNextWeek" fx:id="nextWeekButton"/>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="dienstplanTable" prefWidth="900">
+            <columns>
+                <TableColumn text="Gruppe" prefWidth="150" fx:id="groupColumn" style="-fx-alignment: CENTER;" sortable="false">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="groupName"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Mo" prefWidth="110" fx:id="monColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+                <TableColumn text="Di" prefWidth="110" fx:id="tueColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+                <TableColumn text="Mi" prefWidth="110" fx:id="wedColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+                <TableColumn text="Do" prefWidth="110" fx:id="thuColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+                <TableColumn text="Fr" prefWidth="110" fx:id="friColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+                <TableColumn text="Sa" prefWidth="110" fx:id="satColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+                <TableColumn text="So" prefWidth="110" fx:id="sunColumn" style="-fx-alignment: CENTER;" sortable="false"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
