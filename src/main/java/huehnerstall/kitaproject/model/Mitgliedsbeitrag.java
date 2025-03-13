@@ -11,15 +11,20 @@ public class Mitgliedsbeitrag {
     private String zahlungsstatus;
     private String zahlungsart;
 
+    private String kindVorname;
+    private String kindNachname;
+
     public Mitgliedsbeitrag() { }
 
-    public Mitgliedsbeitrag(int beitragId, int kindId, BigDecimal betrag, LocalDate faelligkeitsdatum, String zahlungsstatus, String zahlungsart) {
+    public Mitgliedsbeitrag(int beitragId, int kindId, BigDecimal betrag, LocalDate faelligkeitsdatum, String zahlungsstatus, String zahlungsart, String kindVorname, String kindNachname) {
         this.beitragId = beitragId;
         this.kindId = kindId;
         this.betrag = betrag;
         this.faelligkeitsdatum = faelligkeitsdatum;
         this.zahlungsstatus = zahlungsstatus;
         this.zahlungsart = zahlungsart;
+        this.kindVorname = kindVorname;
+        this.kindNachname = kindNachname;
     }
 
     public int getBeitragId() {
@@ -68,6 +73,23 @@ public class Mitgliedsbeitrag {
 
     public void setZahlungsart(String zahlungsart) {
         this.zahlungsart = zahlungsart;
+    }
+
+
+    public String getKindVorname() {
+        return kindVorname;
+    }
+
+    public void setKindVorname(String kindVorname) {
+        this.kindVorname = kindVorname;
+    }
+
+    public String getKindNachname() {
+        return kindNachname;
+    }
+
+    public void setKindNachname(String kindNachname) {
+        this.kindNachname = kindNachname;
     }
 
     @Override

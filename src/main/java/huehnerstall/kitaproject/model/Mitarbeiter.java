@@ -57,9 +57,6 @@ public class Mitarbeiter {
         this.ort = ort;
         this.gehalt = gehalt;
         this.mitarbeiterRolle = mitarbeiterRolle;
-        this.startzeit = startzeit;
-        this.arbeitszeit = arbeitszeit;
-        this.gruppe = gruppe;
     }
 
     public int getMitarbeiterId() {

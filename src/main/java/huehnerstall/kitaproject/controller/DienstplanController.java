@@ -77,8 +77,8 @@ public class DienstplanController {
         sunColumn.setText("Sonntag\n" + currentMonday.plusDays(6).format(formatter));
 
         // Samstag und Sonntag können ausgegraut werden – falls gewünscht:
-        satColumn.setStyle("-fx-background-color: lightgray; -fx-alignment: CENTER;");
-        sunColumn.setStyle("-fx-background-color: lightgray; -fx-alignment: CENTER;");
+        // satColumn.setStyle("-fx-background-color: lightgray; -fx-alignment: CENTER;");
+        // sunColumn.setStyle("-fx-background-color: lightgray; -fx-alignment: CENTER;");
     }
 
     @FXML

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="huehnerstall.kitaproject.controller.VormundController"
+            style="-fx-padding: 10;">
+    <center>
+        <TableView fx:id="vormundTable" prefWidth="800">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="vormundId"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="vornameColumn" text="Vorname" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="vorname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="nachnameColumn" text="Nachname" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nachname"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="rolleColumn" text="Rolle" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="rolle"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="telefonColumn" text="Telefon" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="telefon"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="strasseColumn" text="Strasse" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="strasse"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="hausnummerColumn" text="Hausnummer" prefWidth="70">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="hausnummer"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="plzColumn" text="PLZ" prefWidth="70">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="plz"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="ortColumn" text="Ort" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="ort"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <children>
+                <Button text="Hinzufügen" onAction="#handleAdd"/>
+                <Button text="Bearbeiten" onAction="#handleEdit"/>
+                <Button text="Löschen" onAction="#handleDelete"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
