@@ -1,11 +1,16 @@
 package huehnerstall.kitaproject.controller;
 
 import huehnerstall.kitaproject.JDBC;
+import huehnerstall.kitaproject.model.DienstplanRow;
 import huehnerstall.kitaproject.model.Mitgliedsbeitrag;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.print.PrinterJob;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.transform.Scale;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -17,6 +22,9 @@ public class MitgliedsbeitragController {
     TableView<Mitgliedsbeitrag> mitgliedsbeitragTable;
 
     private final ObservableList<Mitgliedsbeitrag> mitgliedsbeitragList = FXCollections.observableArrayList();
+
+    @FXML
+    public Button printButton;
 
     @FXML
     public void initialize() {
@@ -50,4 +58,24 @@ public class MitgliedsbeitragController {
         }
         mitgliedsbeitragTable.setItems(mitgliedsbeitragList);
     }
+
+    @FXML
+    private void handlePrint(ActionEvent event) {
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null && job.showPrintDialog(mitgliedsbeitragTable.getScene().getWindow())) {
+            // Optional: Tabelle skalieren, um sie an die Seitenbreite anzupassen
+            double printableWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
+            double scaleX = printableWidth / mitgliedsbeitragTable.getWidth();
+            Scale scale = new Scale(scaleX, scaleX);
+            mitgliedsbeitragTable.getTransforms().add(scale);
+
+            boolean success = job.printPage(mitgliedsbeitragTable);
+            if (success) {
+                job.endJob();
+            }
+
+            mitgliedsbeitragTable.getTransforms().remove(scale);
+        }
+    }
+
 }

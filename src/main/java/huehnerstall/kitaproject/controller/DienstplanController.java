@@ -6,6 +6,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.print.PageLayout;
+import javafx.print.Printer;
+import javafx.print.PrinterJob;
+import javafx.scene.transform.Scale;
 import javafx.scene.control.*;
 
 import java.sql.*;
@@ -38,6 +42,8 @@ public class DienstplanController {
     private Button prevWeekButton;
     @FXML
     private Button nextWeekButton;
+    @FXML
+    public Button printButton;
 
     private LocalDate currentMonday;
     // Map zur Zuordnung: Gruppen-ID -> Gruppenname
@@ -103,6 +109,25 @@ public class DienstplanController {
             e.printStackTrace();
         }
         return rows;
+    }
+
+    @FXML
+    private void handlePrint(ActionEvent event) {
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null && job.showPrintDialog(dienstplanTable.getScene().getWindow())) {
+            // Optional: Tabelle skalieren, um sie an die Seitenbreite anzupassen
+            double printableWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
+            double scaleX = printableWidth / dienstplanTable.getWidth();
+            Scale scale = new Scale(scaleX, scaleX);
+            dienstplanTable.getTransforms().add(scale);
+
+            boolean success = job.printPage(dienstplanTable);
+            if (success) {
+                job.endJob();
+            }
+
+            dienstplanTable.getTransforms().remove(scale);
+        }
     }
 
     /**

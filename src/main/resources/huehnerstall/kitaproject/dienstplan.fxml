@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -6,59 +7,57 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="huehnerstall.kitaproject.controller.DienstplanController"
-            style="-fx-padding: 10;">
+<BorderPane style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huehnerstall.kitaproject.controller.DienstplanController">
     <top>
         <HBox spacing="10" BorderPane.alignment="CENTER">
             <children>
-                <Button text="Vorherige Woche" onAction="#handlePrevWeek" fx:id="prevWeekButton"/>
-                <Button text="Nächste Woche" onAction="#handleNextWeek" fx:id="nextWeekButton"/>
+                <Button fx:id="prevWeekButton" onAction="#handlePrevWeek" text="Vorherige Woche" />
+                <Button fx:id="nextWeekButton" onAction="#handleNextWeek" text="Nächste Woche" />
+                <Button fx:id="printButton" onAction="#handlePrint" text="Drucken" />
             </children>
         </HBox>
     </top>
     <center>
         <TableView fx:id="dienstplanTable" prefWidth="900">
             <columns>
-                <TableColumn text="Gruppe" prefWidth="150" fx:id="groupColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="groupColumn" prefWidth="150.0" sortable="false" style="-fx-alignment: CENTER;" text="Gruppe">
                     <cellValueFactory>
-                        <PropertyValueFactory property="groupName"/>
+                        <PropertyValueFactory property="groupName" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Mo" prefWidth="110" fx:id="monColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="monColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="Mo">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day1"/>
+                        <PropertyValueFactory property="day1" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Di" prefWidth="110" fx:id="tueColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="tueColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="Di">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day2"/>
+                        <PropertyValueFactory property="day2" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Mi" prefWidth="110" fx:id="wedColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="wedColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="Mi">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day3"/>
+                        <PropertyValueFactory property="day3" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Do" prefWidth="110" fx:id="thuColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="thuColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="Do">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day4"/>
+                        <PropertyValueFactory property="day4" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Fr" prefWidth="110" fx:id="friColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="friColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="Fr">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day5"/>
+                        <PropertyValueFactory property="day5" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Sa" prefWidth="110" fx:id="satColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="satColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="Sa">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day6"/>
+                        <PropertyValueFactory property="day6" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="So" prefWidth="110" fx:id="sunColumn" style="-fx-alignment: CENTER;" sortable="false">
+                <TableColumn fx:id="sunColumn" prefWidth="110" sortable="false" style="-fx-alignment: CENTER;" text="So">
                     <cellValueFactory>
-                        <PropertyValueFactory property="day7"/>
+                        <PropertyValueFactory property="day7" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>

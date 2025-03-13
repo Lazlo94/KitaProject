@@ -9,6 +9,13 @@
 <BorderPane style="-fx-padding: 5;" xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="huehnerstall.kitaproject.controller.MitgliedsbeitragController">
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="printButton" onAction="#handlePrint" text="Drucken" />
+            </children>
+        </HBox>
+    </top>
     <center>
         <TableView fx:id="mitgliedsbeitragTable" prefWidth="800" BorderPane.alignment="CENTER">
             <columns>
