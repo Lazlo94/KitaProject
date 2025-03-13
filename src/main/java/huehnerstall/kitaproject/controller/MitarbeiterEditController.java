@@ -94,7 +94,6 @@ public class MitarbeiterEditController {
         LocalTime time = LocalTime.of(6, 0);
         LocalTime end = LocalTime.of(12, 0);
         while (!time.isAfter(end)) {
-            // Format: HH:mm (ohne Sekunden)
             startzeiten.add(time.toString().substring(0, 5));
             time = time.plusMinutes(30);
         }
@@ -153,7 +152,6 @@ public class MitarbeiterEditController {
             plzField.setText(mitarbeiter.getPlz());
             ortField.setText(mitarbeiter.getOrt());
             gehaltField.setText(mitarbeiter.getGehalt().toString());
-            // Setze Rolle vorausgewählt – Suche den Rollennamen anhand der Rollen-ID
             for (Map.Entry<String, Integer> entry : rolleMap.entrySet()) {
                 if (entry.getValue() == mitarbeiter.getRolleId()) {
                     rolleComboBox.setValue(entry.getKey());

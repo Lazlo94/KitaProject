@@ -49,10 +49,8 @@ public class DienstplanController {
 
     @FXML
     public void initialize() {
-        // Setze currentMonday auf den aktuellen Montag
         LocalDate today = LocalDate.now();
-        LocalDate monday = today.with(DayOfWeek.MONDAY);
-        currentMonday = monday;
+        currentMonday = today.with(DayOfWeek.MONDAY);
         updateColumnHeaders();
 
         // Lade die Gruppendaten (DienstplanRow-Objekte) und speichere die Zuordnung
@@ -75,24 +73,18 @@ public class DienstplanController {
         friColumn.setText("Freitag\n" + currentMonday.plusDays(4).format(formatter));
         satColumn.setText("Samstag\n" + currentMonday.plusDays(5).format(formatter));
         sunColumn.setText("Sonntag\n" + currentMonday.plusDays(6).format(formatter));
-
-        // Samstag und Sonntag können ausgegraut werden – falls gewünscht:
-        // satColumn.setStyle("-fx-background-color: lightgray; -fx-alignment: CENTER;");
-        // sunColumn.setStyle("-fx-background-color: lightgray; -fx-alignment: CENTER;");
     }
 
     @FXML
     private void handlePrevWeek(ActionEvent event) {
         currentMonday = currentMonday.minusWeeks(1);
         updateColumnHeaders();
-        // Hier könnt ihr den Dienstplan neu laden (z. B. reloadAssignments())
     }
 
     @FXML
     private void handleNextWeek(ActionEvent event) {
         currentMonday = currentMonday.plusWeeks(1);
         updateColumnHeaders();
-        // Hier könnt ihr den Dienstplan neu laden (z. B. reloadAssignments())
     }
 
     /**
@@ -137,7 +129,6 @@ public class DienstplanController {
 
             while (rs.next()) {
                 int gruppeId = rs.getInt("gruppe");
-                // Falls Gruppe NULL oder 0, überspringen
                 if (gruppeId <= 0) continue;
 
                 String vorname = rs.getString("vorname");
@@ -175,7 +166,6 @@ public class DienstplanController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // Optional: Erfrische die TableView, falls nötig:
         dienstplanTable.refresh();
     }
 }

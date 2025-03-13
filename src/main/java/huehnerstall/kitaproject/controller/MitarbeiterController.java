@@ -34,7 +34,6 @@ public class MitarbeiterController {
      */
     private void loadMitarbeiter() {
         mitarbeiterList.clear();
-        // String sql = "SELECT mitarbeiter_id, rolle_id, vorname, nachname, telefon, email, strasse, hausnummer, plz, ort, gehalt, mitarbeiter_rolle FROM vw_mitarbeiter";
         String sql = "SELECT m.mitarbeiter_id, m.rolle_id, m.vorname, m.nachname, m.telefon, m.email, " +
                 "m.strasse, m.hausnummer, m.plz, m.ort, m.gehalt, m.startzeit, m.arbeitszeit, m.gruppe, " +
                 "r.beruf AS mitarbeiter_rolle " +
@@ -46,21 +45,6 @@ public class MitarbeiterController {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                /*int id = rs.getInt("mitarbeiter_id");
-                int rolleId = rs.getInt("rolle_id");
-                String vorname = rs.getString("vorname");
-                String nachname = rs.getString("nachname");
-                String telefon = rs.getString("telefon");
-                String email = rs.getString("email");
-                String strasse = rs.getString("strasse");
-                String hausnummer = rs.getString("hausnummer");
-                String plz = rs.getString("plz");
-                String ort = rs.getString("ort");
-                BigDecimal gehalt = rs.getBigDecimal("gehalt");
-                String beruf = rs.getString("mitarbeiter_rolle");
-
-                Mitarbeiter mitarbeiter = new Mitarbeiter(id, rolleId, vorname, nachname, telefon, email, strasse, hausnummer, plz, ort, gehalt, beruf);
-                mitarbeiterList.add(mitarbeiter);*/
 
                 int id = rs.getInt("mitarbeiter_id");
                 int rolleId = rs.getInt("rolle_id");

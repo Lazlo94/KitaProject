@@ -61,7 +61,7 @@ public class StandortEditController {
             return;
         }
 
-        // Optional: PLZ validieren (genau 5 Ziffern)
+        // PLZ validieren (genau 5 Ziffern)
         if (!plz.matches("\\d{5}")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "PLZ muss genau 5 Ziffern enthalten!");
             alert.showAndWait();

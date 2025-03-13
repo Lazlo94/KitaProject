@@ -66,7 +66,6 @@ public class DokumentationEditController {
         String bemerkung = bemerkungField.getText();
 
         if (date == null || status == null) {
-            // Optional: Fehler anzeigen, falls Pflichtfelder nicht ausgefüllt sind.
             return;
         }
 
@@ -86,7 +85,6 @@ public class DokumentationEditController {
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         int newId = generatedKeys.getInt(1);
-                        // Optional: Setze das neue Dokumentation-Objekt, falls benötigt
                         documentation = new Dokumentation(newId, kind.getKindId(), date, status, bemerkung);
                     } else {
                         throw new SQLException("Kein generierter Schlüssel erhalten.");

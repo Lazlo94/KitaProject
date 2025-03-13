@@ -42,7 +42,6 @@ public class KinderController {
 
     private void loadKinder() {
         kinderList.clear();
-        // Erwartet, dass vw_kind_info die Spalten kind_id, vorname, nachname, geburtstag, gruppenname und standort liefert.
         String sql = "SELECT kind_id, vorname, nachname, geburtstag, gruppenname, standort FROM vw_kind_info";
         try (Connection conn = JDBC.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);

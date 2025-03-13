@@ -36,7 +36,6 @@ public class VormundEditController {
     @FXML
     private Button saveButton;
 
-    // Der zu bearbeitende Vormund; ist null im Hinzufügen-Modus.
     private Vormund vormund;
 
     /**

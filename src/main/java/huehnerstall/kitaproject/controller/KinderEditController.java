@@ -173,15 +173,8 @@ public class KinderEditController {
             sql = "UPDATE kind SET vorname=?, nachname=?, geburtstag=?, gruppe_id=? WHERE kind_id=?";
         }
 
-// Debug-Ausgabe
-        System.out.println("FINAL SQL: " + sql);
-        System.out.println("Werte: " + vorname + ", " + nachname + ", " + Date.valueOf(geburtstag) + ", " + gruppenId);
-
         try (Connection conn = JDBC.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
-            // Sicherstellen, dass Auto-Commit aktiv ist
-            conn.setAutoCommit(true);
 
             ps.setString(1, vorname);
             ps.setString(2, nachname);
